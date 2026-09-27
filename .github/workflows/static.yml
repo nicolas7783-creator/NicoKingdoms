@@ -3,7 +3,7 @@ name: Publier Nico Kingdom
 on:
   push:
     branches:
-      - principal
+      - main
   workflow_dispatch:
 
 permissions:
