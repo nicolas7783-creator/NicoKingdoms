@@ -33,7 +33,7 @@ jobs:
       - name: Préparer le site
         run: |
           mkdir -p _site
-          cp NicoKingdom_WEB_V35_GITHUB_SANS_SECRET.html _site/index.html
+          cp NicoKingdom_WEB_V34_GITHUB.html _site/index.html
 
       - name: Envoyer le site
         uses: actions/upload-pages-artifact@v4
