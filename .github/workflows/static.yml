@@ -1,0 +1,45 @@
+name: Publier Nico Kingdom
+
+on:
+  push:
+    branches:
+      - principal
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Récupérer le jeu
+        uses: actions/checkout@v5
+
+      - name: Configurer GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Préparer le site
+        run: |
+          mkdir -p _site
+          cp NicoKingdom_WEB_V35_GITHUB_SANS_SECRET.html _site/index.html
+
+      - name: Envoyer le site
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+
+      - name: Publier Nico Kingdom
+        id: deployment
+        uses: actions/deploy-pages@v4
